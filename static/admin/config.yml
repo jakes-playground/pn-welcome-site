@@ -12,6 +12,40 @@ media_folder: static/img
 public_folder: /img
 
 collections:
+  - name: "vipVisit"
+    label: "VIP Visits"
+    folder: "src/pages/visits/vip"
+    create: true
+    slug: "{{hour}}{{month}}{{minute}}{{day}}{{second}}"
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget:  "hidden",
+          default: "vip-visit"
+        }
+      - {
+          label: "Visitor Name",
+          name: "visitorName",
+          widget:  "string",
+        }
+      - {
+          label: "Intro Text",
+          name: "introText",
+          widget:  "text"
+        }
+      - {
+          label: "Date and Time",
+          name: "dateTime",
+          widget:  "datetime"
+        }
+      - {
+          label: "Visit Length (Days)",
+          name: "visitLength",
+          widget:  "select",
+          options: ["1", "2", "3", "4", "5"]
+        }
+      
   - name: "blog"
     label: "Blog"
     folder: "src/pages/blog"
