@@ -1,5 +1,7 @@
 ---
 name: Andy Rose
+firstname: Andy
+lastname: Rose
 employeeTitle: 'Group Creative Director, Digital'
 email: andy.rose@partnersandnapier.com
 department: Experience
