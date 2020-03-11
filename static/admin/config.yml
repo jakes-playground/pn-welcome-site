@@ -14,9 +14,11 @@ public_folder: /img
 collections:
   - name: "vipVisit"
     label: "VIP Visits"
+    label_singular: "VIP Visit"
     folder: "src/pages/visits/vip"
     create: true
     slug: "{{hour}}{{month}}{{minute}}{{day}}{{second}}"
+    identifier_field: visitorName
     fields:
       - {
           label: "Template Key",
@@ -45,7 +47,71 @@ collections:
           widget:  "select",
           options: ["1", "2", "3", "4", "5"]
         }
-      
+      - {
+          label: "Point of Contact",
+          name: "contact",
+          widget:  "relation",
+          collection: "person",
+          searchFields: ["firstname", "lastname"],
+          displayFields: ["firstname", "lastname"],
+          valueField: "email"
+        }
+      - {
+          label: "Usual Suspects",
+          name: "usualSuspects",
+          widget:  "relation",
+          collection: "person",
+          multiple: true,
+          searchFields: ["firstname", "lastname"],
+          displayFields: ["firstname", "lastname"],
+          valueField: "email"
+        }
+  - name: "person"
+    label: "People"
+    label_singular: "Person"
+    folder: "src/pages/people"
+    create: true
+    slug: "{{firstname}}-{{lastname}}"
+    identifier_field: email
+    summary: "{{firstname}} {{lastname}}"
+    fields:
+      - {
+          label: "First Name",
+          name: "firstname",
+          widget:  "string",
+        }
+      - {
+          label: "Last Name",
+          name: "lastname",
+          widget:  "string",
+        }
+      - {
+          label: "Title",
+          name: "employeeTitle",
+          widget:  "string"
+        }
+      - {
+          label: "Email",
+          name: "email",
+          widget:  "string"
+        }
+      - {
+          label: "Department",
+          name: "department",
+          widget:  "select",
+          options: ["Senior Management","Accounting","Human Resources","Account Leadership","New Business","PR/Analytics","Strategy","Info Technology","Project Management/Production","Creative","Mechanical","Experience","Content","Office Management","Vine Creative Services","Vine Project Management","Vine Editorial"]
+        }
+      - {
+          label: "Fun Fact",
+          name: "funFact",
+          widget:  "string",
+          required: false
+        }
+      - {
+          label: "Headshot",
+          name: "headshot",
+          widget:  "image"
+        }
   - name: "blog"
     label: "Blog"
     folder: "src/pages/blog"

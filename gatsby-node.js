@@ -17,6 +17,7 @@ exports.createPages = ({ actions, graphql }) => {
             }
             frontmatter {
               templateKey
+              contact
             }
           }
         }
@@ -31,7 +32,8 @@ exports.createPages = ({ actions, graphql }) => {
     const visits = result.data.allMarkdownRemark.edges
 
     visits.forEach(edge => {
-      const id = edge.node.id
+      const visitId = edge.node.id,
+            contactName = edge.node.frontmatter.contact
       createPage({
         path: edge.node.fields.slug,
         component: path.resolve(
@@ -39,7 +41,8 @@ exports.createPages = ({ actions, graphql }) => {
         ),
         // additional data can be passed via context
         context: {
-          id,
+          visitId,
+          contactName
         },
       })
     })
