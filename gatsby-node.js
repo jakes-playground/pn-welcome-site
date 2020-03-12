@@ -18,6 +18,7 @@ exports.createPages = ({ actions, graphql }) => {
             frontmatter {
               templateKey
               contact
+              usualSuspects
             }
           }
         }
@@ -33,7 +34,8 @@ exports.createPages = ({ actions, graphql }) => {
 
     visits.forEach(edge => {
       const visitId = edge.node.id,
-            contactName = edge.node.frontmatter.contact
+            contactEmail = edge.node.frontmatter.contact,
+            usualSuspects = edge.node.frontmatter.usualSuspects
       createPage({
         path: edge.node.fields.slug,
         component: path.resolve(
@@ -42,7 +44,8 @@ exports.createPages = ({ actions, graphql }) => {
         // additional data can be passed via context
         context: {
           visitId,
-          contactName
+          contactEmail,
+          usualSuspects
         },
       })
     })
